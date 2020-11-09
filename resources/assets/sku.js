@@ -7,6 +7,7 @@
         this.attrs = {};
         this.commonStock = 0; // 统一库存
         this.commonPrice = 0; // 统一价格
+        this.commonPoint = 0; // 统一价格
         this.init();
     }
 
@@ -98,7 +99,12 @@
             _this.warp.find('.sku_edit_warp tbody td[data-field="stock"] input').val(_this.commonStock);
             _this.processSku()
         });
-
+        //统一积分
+        _this.warp.find('.sku_edit_warp thead').on('keyup', 'input.Js_point', function () {
+            _this.commonPoint = $(this).val();
+            _this.warp.find('.point_edit_warp tbody td[data-field="point"] input').val(_this.commonPoint);
+            _this.processSku()
+        });
         // SKU图片上传
         _this.warp.find('.sku_edit_warp tbody').on('click', '.Js_sku_upload', function() {
             _this.upload($(this))
@@ -201,21 +207,22 @@
             thead_html += '<th style="width: 100px">图片</th>';
             thead_html += '<th style="width: 100px">价格 <input value="' + _this.commonPrice + '" type="text" style="width: 50px" class="Js_price"></th>';
             thead_html += '<th style="width: 100px">库存 <input value="' + _this.commonStock + '" type="text" style="width: 50px" class="Js_stock"></th>';
+            thead_html += '<th style="width: 100px">积分 <input value="' + _this.commonPoint + '" type="text" style="width: 50px" class="Js_point"></th>';
             thead_html += '</tr>';
             _this.warp.find('.sku_edit_warp thead').html(thead_html);
 
             // 求笛卡尔积
             let cartesianProductOf = (function () {
-                    return Array.prototype.reduce.call(arguments, function (a, b) {
-                        var ret = [];
-                        a.forEach(function (a) {
-                            b.forEach(function (b) {
-                                ret.push(a.concat([b]));
-                            });
+                return Array.prototype.reduce.call(arguments, function (a, b) {
+                    var ret = [];
+                    a.forEach(function (a) {
+                        b.forEach(function (b) {
+                            ret.push(a.concat([b]));
                         });
-                        return ret;
-                    }, [[]]);
-                })(...Object.values(_this.attrs));
+                    });
+                    return ret;
+                }, [[]]);
+            })(...Object.values(_this.attrs));
 
             // 根据计算的笛卡尔积渲染tbody
             let tbody_html = '';
@@ -226,9 +233,9 @@
                     tbody_html += '<td data-field="' + attr_name + '">' + attr_val + '</td>';
                 });
                 tbody_html += '<td data-field="pic"><input value="" type="hidden" class="form-control"><span class="Js_sku_upload">+</span><span class="Js_sku_del_pic">清空</span></td>';
-                tbody_html += '<td data-field="id" style="display: none;"><input value="" type="hidden"></td>';
                 tbody_html += '<td data-field="price"><input value="' + _this.commonPrice + '" type="text" class="form-control"></td>';
                 tbody_html += '<td data-field="stock"><input value="' + _this.commonStock + '" type="text" class="form-control"></td>';
+                tbody_html += '<td data-field="point"><input value="' + _this.commonPoint + '" type="text" class="form-control"></td>';
                 tbody_html += '</tr>'
             });
             _this.warp.find('.sku_edit_warp tbody').html(tbody_html);
