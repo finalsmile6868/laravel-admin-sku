@@ -1,14 +1,14 @@
 {
-    "name": "hanson/laravel-admin-sku",
+    "name": "finalsmile6868/laravel-admin-sku",
     "description": "",
     "type": "library",
     "keywords": ["laravel-admin", "extension"],
-    "homepage": "https://github.com/hanson/laravel-admin-sku",
+    "homepage": "https://github.com/finalsmile6868/laravel-admin-sku",
     "license": "MIT",
     "authors": [
         {
-            "name": "Hanson",
-            "email": "h@hanc.cc"
+            "name": "finalsmile6868",
+            "email": "finalsmile6868@163.com"
         }
     ],
     "require": {
@@ -26,7 +26,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Hanson\\LaravelAdminSku\\SkuServiceProvider"
+                "finalsmile6868\\LaravelAdminSku\\SkuServiceProvider"
             ]
         }
     }
