@@ -102,7 +102,7 @@
         //统一积分
         _this.warp.find('.sku_edit_warp thead').on('keyup', 'input.Js_point', function () {
             _this.commonPoint = $(this).val();
-            _this.warp.find('.point_edit_warp tbody td[data-field="point"] input').val(_this.commonPoint);
+            _this.warp.find('.sku_edit_warp tbody td[data-field="point"] input').val(_this.commonPoint);
             _this.processSku()
         });
         // SKU图片上传
